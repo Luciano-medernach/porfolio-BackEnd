@@ -3,10 +3,12 @@ package com.portfolio.backend.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.portfolio.backend.model.Proyect;
 import com.portfolio.backend.repository.ProyectRepository;
 
+@Service
 public class ProyectService implements IProyectService {
 
     @Autowired

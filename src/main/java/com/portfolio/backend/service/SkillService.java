@@ -3,10 +3,12 @@ package com.portfolio.backend.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.portfolio.backend.model.Skill;
 import com.portfolio.backend.repository.SkillRepository;
 
+@Service
 public class SkillService implements ISkillService {
     
     @Autowired

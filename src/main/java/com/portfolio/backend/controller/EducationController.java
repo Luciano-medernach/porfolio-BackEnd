@@ -10,16 +10,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.portfolio.backend.model.Education;
 import com.portfolio.backend.service.EducationService;
 
+@RestController
 public class EducationController {
     
     @Autowired
     EducationService educationService;
 
-    @GetMapping ("education")
+    @GetMapping("/education")
     public List<Education> getEducation(){
         return educationService.getEducation();
     }
@@ -35,13 +37,15 @@ public class EducationController {
     @RequestParam String title,
     @RequestParam String institution,
     @RequestParam String description,
-    @RequestParam String date){
+    @RequestParam String date,
+    @RequestParam String image){
         Education education = educationService.findEducation(id);
 
         education.setDate(date);
         education.setDescription(description);
         education.setTitle(title);
         education.setInstitution(institution);
+        education.setImage(image);
 
         educationService.saveEducation(education);
         return education;

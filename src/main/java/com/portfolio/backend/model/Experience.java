@@ -9,15 +9,14 @@ import lombok.Setter;
 
 @Getter @Setter
 @Entity
-public class Education {
-    
+public class Experience {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private Long id;
     private String title;
-    private String institution;
     private String description;
+    private String employer;
     private String date;
     private String image;
-    
+
 }
