@@ -1,11 +1,9 @@
 package com.portfolio.backend.service;
 
-import java.util.List;
-
 import com.portfolio.backend.model.Person;
 
 public interface IPersonService {
-    public List<Person> getPeople();
+    public Person getPerson();
 
     public void savePerson(Person persona);
     public void deletePerson(Long id);

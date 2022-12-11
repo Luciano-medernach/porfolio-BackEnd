@@ -3,6 +3,7 @@ package com.portfolio.backend.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import com.portfolio.backend.model.Skill;
 import com.portfolio.backend.service.ISkillService;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class SkillController {
     @Autowired
     private ISkillService skillService;
@@ -25,10 +27,10 @@ public class SkillController {
         return skillService.getSkills();
     }
 
-    @PostMapping("/skills/create")
-    public String saveSkill(@RequestBody Skill skill){
+    @PostMapping("/skills/save")
+    public Skill saveSkill(@RequestBody Skill skill){
         skillService.saveSkill(skill);
-        return "Se ha registrado correctamente.";
+        return skill;
     }
 
     @DeleteMapping("/skills/delete/{id}")

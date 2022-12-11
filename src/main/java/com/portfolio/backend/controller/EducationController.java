@@ -3,6 +3,7 @@ package com.portfolio.backend.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import com.portfolio.backend.model.Education;
 import com.portfolio.backend.service.EducationService;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class EducationController {
     
     @Autowired
@@ -27,9 +29,9 @@ public class EducationController {
     }
 
     @PostMapping ("/education/save")
-    public String saveEducation(@RequestBody Education education){
+    public Education saveEducation(@RequestBody Education education){
         educationService.saveEducation(education);
-        return "Ingresado correctamente";
+        return education;
     }
 
     @PutMapping ("/education/edit/{id}")

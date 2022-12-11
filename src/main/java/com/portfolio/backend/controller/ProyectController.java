@@ -3,6 +3,7 @@ package com.portfolio.backend.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import com.portfolio.backend.model.Proyect;
 import com.portfolio.backend.service.ProyectService;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ProyectController {
     
     @Autowired
@@ -26,9 +28,9 @@ public class ProyectController {
     }
 
     @PostMapping("/proyects/save")
-    public String saveProyect(@RequestBody Proyect proyect){
+    public Proyect saveProyect(@RequestBody Proyect proyect){
         proyectService.saveProyect(proyect);
-        return "Se ha guardado correctamente.";
+        return proyect;
     }
 
     @PutMapping("/proyects/edit/{id}")

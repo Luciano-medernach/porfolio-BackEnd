@@ -3,6 +3,7 @@ package com.portfolio.backend.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,19 +17,20 @@ import com.portfolio.backend.model.Person;
 import com.portfolio.backend.service.IPersonService;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class PersonController {
     @Autowired
     private IPersonService personService;
 
-    @GetMapping ("/people")
-    public List<Person> getPeople(){
-        return personService.getPeople();
+    @GetMapping ("/person")
+    public Person getPerson(){
+        return personService.getPerson();
     }
 
     @PostMapping ("/people/save")
-    public String savePerson(@RequestBody Person person){
+    public Person savePerson(@RequestBody Person person){
         personService.savePerson(person);
-        return "La persona fue creada correctamente";
+        return person;
     }
 
     @DeleteMapping("/people/delete/{id}")
