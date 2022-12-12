@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.portfolio.backend.model.Experience;
@@ -36,18 +35,14 @@ public class ExperienceController {
 
     @PutMapping("experience/edit/{id}")
     public Experience editExperience(@PathVariable Long id,
-    @RequestParam String title,
-    @RequestParam String description,
-    @RequestParam String employer,
-    @RequestParam String date,
-    @RequestParam String image
+    @RequestBody Experience exp
     ){
         Experience experience = experienceService.findExperience(id);
-        experience.setTitle(title);
-        experience.setDescription(description);
-        experience.setEmployer(employer);
-        experience.setDate(date);
-        experience.setImage(image);
+        experience.setTitle(exp.getTitle());
+        experience.setDescription(exp.getDescription());
+        experience.setEmployer(exp.getEmployer());
+        experience.setDate(exp.getDate());
+        experience.setImage(exp.getImage());
 
         experienceService.saveExperience(experience);
         return experience;

@@ -1,6 +1,5 @@
 package com.portfolio.backend.controller;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,30 +26,29 @@ public class PersonController {
         return personService.getPerson();
     }
 
-    @PostMapping ("/people/save")
+    @PostMapping ("/person/save")
     public Person savePerson(@RequestBody Person person){
         personService.savePerson(person);
         return person;
     }
 
-    @DeleteMapping("/people/delete/{id}")
+    @DeleteMapping("/person/delete/{id}")
     public String deletePerson(@PathVariable Long id){
         personService.deletePerson(id);
 
         return "La persona fue eliminada correctamente";
     }
 
-    @PutMapping("people/edit/{id}")
+    @PutMapping("person/edit/{id}")
     public Person editPerson (@PathVariable Long id,
-        @RequestParam ("name") String name,
-        @RequestParam ("lastname") String lastname,
-        @RequestParam ("title") String title 
+        @RequestBody Person per
     ) {
         Person person = personService.findPerson(id);
 
-        person.setLastname(lastname);
-        person.setName(name);
-        person.setTitle(title);
+        person.setLastname(per.getLastname());
+        person.setName(per.getName());
+        person.setTitle(per.getTitle());
+        person.setInfo(per.getInfo());
 
         personService.savePerson(person);
 

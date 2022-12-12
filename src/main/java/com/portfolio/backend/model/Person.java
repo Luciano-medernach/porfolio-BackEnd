@@ -17,4 +17,5 @@ public class Person {
     private String name;
     private String lastname;
     private String title;
+    private String info;
 }

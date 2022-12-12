@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.portfolio.backend.model.Skill;
@@ -41,12 +40,11 @@ public class SkillController {
 
     @PutMapping("/skills/edit/{id}")
     public Skill editSkill(@PathVariable Long id,
-    @RequestParam String name,
-    @RequestParam int percentage){
+    @RequestBody Skill sk){
         Skill skill = skillService.findSkill(id);
 
-        skill.setName(name);
-        skill.setPercentage(percentage);
+        skill.setName(sk.getName());
+        skill.setPercentage(sk.getPercentage());
 
         skillService.saveSkill(skill);
 
