@@ -19,6 +19,6 @@ public class Experience {
     private String description;
     private String employer;
     private String date;
-    private String image;
+    private Long image;
 
 }
